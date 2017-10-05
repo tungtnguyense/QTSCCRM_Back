@@ -30,11 +30,11 @@ namespace APIProject.App_Start
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
 
             // Repositories
-            builder.RegisterAssemblyTypes(typeof(CategoryRepository).Assembly)
+            builder.RegisterAssemblyTypes(typeof(MarketingPlanRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces().InstancePerRequest();
             // Services
-            builder.RegisterAssemblyTypes(typeof(CategoryService).Assembly)
+            builder.RegisterAssemblyTypes(typeof(MarketingPlanService).Assembly)
                .Where(t => t.Name.EndsWith("Service"))
                .AsImplementedInterfaces().InstancePerRequest();
 
