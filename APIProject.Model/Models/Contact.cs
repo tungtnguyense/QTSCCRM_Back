@@ -37,6 +37,8 @@ namespace APIProject.Model.Models
 
         [StringLength(255)]
         public string Phone { get; set; }
+        public bool? IsMain { get; set; }
+        public string Role { get; set; }
 
         public virtual Customer Customer { get; set; }
 

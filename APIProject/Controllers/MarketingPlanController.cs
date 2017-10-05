@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace APIProject.Controllers
 {
+    [RoutePrefix("api/marketingplan")]
     public class MarketingPlanController : ApiController
     {
         private readonly IMarketingPlanService _marketingPlanService;
@@ -17,7 +18,7 @@ namespace APIProject.Controllers
         {
             this._marketingPlanService = _marketingPlanService;
         }
-        [Route("api/CreateMarketingPlan")]
+        [Route("CreateMarketingPlan")]
         [HttpPost]
         public IHttpActionResult CreateMarketingPlan(CreateMarketingPlanViewModel viewModel)
         {
@@ -33,28 +34,57 @@ namespace APIProject.Controllers
             return Ok();
         }
 
-        [Route("api/GetMarketingPlanList")]
-        [HttpGet]
-        public IEnumerable<MarketingPlanViewModel> GetMarketingPlanList()
+        [Route("EditMarketingPlan")]
+        [HttpPut]
+        public IHttpActionResult EditMarketingPlan()
         {
-            return _marketingPlanService.GetMarketingPlanList().Select(
-                c => new MarketingPlanViewModel() {
-                    Id = c.Id,
-                    Title = c.Title,
-                    Description = c.Description,
-                    TotalBudget = c.TotalBudget,
-                    EventScheduleFile = c.EventScheduleFile,
-                    TaskAssignFile = c.TaskAssignFile,
-                    BudgetFile = c.BudgetFile,
-                    LicenseFile = c.LicenseFile,
-                    StageId = c.StageId,
-                    StageName = c.MarketingStage.Name
-                    //ValidatedById = c.ValidatedById,
-                    //ValidatedByName = c.Staff2.LastName + " " + c.Staff2.MiddleName + " " + c.Staff2.FirstName,
-                    //ValidatedDate = c.ValidatedDate,
-                    //ValidatedNote = c.ValidatedNote
-
-                });
+            return Ok();
         }
+
+        [Route("ValidateMarketingPlan")]
+        [HttpPut]
+        public IHttpActionResult ValidateMarketingPlan()
+        {
+            return Ok();
+        }
+
+        [Route("ApproveMarketingPlan")]
+        [HttpPut]
+        public IHttpActionResult ApproveMarketingPlan()
+        {
+            return Ok();
+        }
+
+        [Route("AcceptMarketingPlan")]
+        [HttpPut]
+        public IHttpActionResult AcceptMarketingPlan()
+        {
+            return Ok();
+        }
+
+        //[Route("GetMarketingPlanList")]
+        //[HttpGet]
+        //public IEnumerable<MarketingPlanViewModel> GetMarketingPlanList()
+        //{
+        //    return _marketingPlanService.GetMarketingPlanList().Select(
+        //        c => new MarketingPlanViewModel() {
+        //            Id = c.Id,
+        //            Title = c.Title,
+        //            Description = c.Description,
+        //            TotalBudget = c.TotalBudget,
+        //            EventScheduleFile = c.EventScheduleFile,
+        //            TaskAssignFile = c.TaskAssignFile,
+        //            BudgetFile = c.BudgetFile,
+        //            LicenseFile = c.LicenseFile,
+        //            StageId = c.StageId,
+        //            StageName = c.MarketingStage.Name
+        //            //ValidatedById = c.ValidatedById,
+        //            //ValidatedByName = c.Staff2.LastName + " " + c.Staff2.MiddleName + " " + c.Staff2.FirstName,
+        //            //ValidatedDate = c.ValidatedDate,
+        //            //ValidatedNote = c.ValidatedNote
+
+        //        });
+        //}
+
     }
 }
