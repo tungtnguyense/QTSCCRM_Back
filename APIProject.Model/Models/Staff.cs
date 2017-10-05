@@ -18,29 +18,9 @@ namespace APIProject.Model.Models
             MarketingPlans3 = new HashSet<MarketingPlan>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         public int? RoleId { get; set; }
-
-        [StringLength(255)]
-        public string FirstName { get; set; }
-
-        [StringLength(255)]
-        public string MiddleName { get; set; }
-
-        [StringLength(255)]
-        public string LastName { get; set; }
-
-        [StringLength(255)]
-        public string Username { get; set; }
-
-        [StringLength(255)]
-        public string Password { get; set; }
-        [StringLength(255)]
-        public string Email { get; set; }
-        [StringLength(255)]
-        public string Phone { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MarketingPlan> MarketingPlans { get; set; }
@@ -53,7 +33,5 @@ namespace APIProject.Model.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MarketingPlan> MarketingPlans3 { get; set; }
-
-        public virtual Role Role { get; set; }
     }
 }

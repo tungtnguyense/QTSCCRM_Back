@@ -8,7 +8,5 @@ namespace APIProject.ViewModels
 {
     public class CreateMarketingPlanViewModel
     {
-        public MarketingPlan Plan { get; set; }
-        public ICollection<MarketingPlanDate> MarketingPlanDates { get; set; }
     }
 }

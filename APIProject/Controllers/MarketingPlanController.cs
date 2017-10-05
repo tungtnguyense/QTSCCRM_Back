@@ -22,14 +22,7 @@ namespace APIProject.Controllers
         [HttpPost]
         public IHttpActionResult CreateMarketingPlan(CreateMarketingPlanViewModel viewModel)
         {
-            if (!ModelState.IsValid)
-            {
-                // Do something with the product (not shown).
-
-                return BadRequest();
-            }
-
-            _marketingPlanService.CreatePlanV2(viewModel.Plan,viewModel.MarketingPlanDates);
+            
 
             return Ok();
         }

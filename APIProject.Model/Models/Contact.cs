@@ -15,30 +15,9 @@ namespace APIProject.Model.Models
             MarketingResults = new HashSet<MarketingResult>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public int? CustomerId { get; set; }
-
-        [StringLength(255)]
-        public string FirstName { get; set; }
-
-        [StringLength(255)]
-        public string MiddleName { get; set; }
-
-        [StringLength(255)]
-        public string LastName { get; set; }
-
-        [StringLength(255)]
-        public string Address { get; set; }
-
-        [StringLength(255)]
-        public string Email { get; set; }
-
-        [StringLength(255)]
-        public string Phone { get; set; }
-        public bool? IsMain { get; set; }
-        public string Role { get; set; }
 
         public virtual Customer Customer { get; set; }
 

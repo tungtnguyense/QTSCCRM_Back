@@ -12,26 +12,8 @@ namespace APIProject.Data
     {
         protected override void Seed(APIProjectEntities context)
         {
-            GetCategories().ForEach(c => context.Categories.Add(c));
             context.Commit();
         }
-        private static List<Category> GetCategories()
-        {
-            return new List<Category>
-            {
-                new Category {
-                    Name = "Food",
-                    isDelete = false,
-                },
-                new Category {
-                    Name = "Drink",
-                    isDelete = false,
-                },
-                new Category {
-                    Name = "Snack",
-                    isDelete = false,
-                }
-            };
-        }
+        
     }
 }

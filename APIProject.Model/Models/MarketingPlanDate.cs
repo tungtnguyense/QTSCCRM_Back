@@ -9,13 +9,9 @@ namespace APIProject.Model.Models
     [Table("MarketingPlanDate")]
     public partial class MarketingPlanDate
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public int? PlanId { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime? PlanDate { get; set; }
+        public int? MarketingPlanId { get; set; }
 
         public virtual MarketingPlan MarketingPlan { get; set; }
     }
