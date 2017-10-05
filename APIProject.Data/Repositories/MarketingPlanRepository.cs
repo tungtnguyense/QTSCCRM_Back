@@ -12,9 +12,15 @@ namespace APIProject.Data.Repositories
     {
         public MarketingPlanRepository(IDbFactory dbFactory)
             : base(dbFactory) { }
+
+        public IEnumerable<MarketingPlan> GetMarketingPlanList()
+        {
+            return DbContext.MarketingPlans
+                .Include("MarketingStage").ToList();
+        }
     }
     public interface IMarketingPlanRepository : IRepository<MarketingPlan>
     {
-
+        IEnumerable<MarketingPlan> GetMarketingPlanList();
     }
 }

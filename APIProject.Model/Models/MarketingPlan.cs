@@ -90,7 +90,7 @@ namespace APIProject.Model.Models
 
         [Column(TypeName = "date")]
         public DateTime? CompletedDate { get; set; }
-
+        
         public virtual MarketingStage MarketingStage { get; set; }
 
         public virtual Staff Staff { get; set; }

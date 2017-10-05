@@ -48,13 +48,13 @@ namespace APIProject.Controllers
                     BudgetFile = c.BudgetFile,
                     LicenseFile = c.LicenseFile,
                     StageId = c.StageId,
-                    StageName = c.MarketingStage.Name,
-                    ValidatedById = c.ValidatedById,
-                    ValidatedByName = c.Staff2.LastName + " " + c.Staff2.MiddleName + " " + c.Staff2.FirstName,
-                    ValidatedDate = c.ValidatedDate,
-                    ValidatedNote = c.ValidatedNote
+                    StageName = c.MarketingStage.Name
+                    //ValidatedById = c.ValidatedById,
+                    //ValidatedByName = c.Staff2.LastName + " " + c.Staff2.MiddleName + " " + c.Staff2.FirstName,
+                    //ValidatedDate = c.ValidatedDate,
+                    //ValidatedNote = c.ValidatedNote
 
-        });
+                });
         }
     }
 }

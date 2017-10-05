@@ -46,7 +46,7 @@ namespace APIProject.Service
 
         public IEnumerable<MarketingPlan> GetMarketingPlanList()
         {
-            return marketingPlanRepository.GetAll().ToList();
+            return marketingPlanRepository.GetMarketingPlanList();
 
         }
     }
