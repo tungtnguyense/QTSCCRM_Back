@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using APIProject.Model.Models;
 
 namespace APIProject.Service
 {
@@ -18,10 +19,16 @@ namespace APIProject.Service
             this._customerRepository = _customerRepository;
             this._unitOfWork = _unitOfWork;
         }
+
+        public void CreateCustomer(Customer customer)
+        {
+            _customerRepository.Add(customer);
+            _unitOfWork.Commit();
+        }
     }
 
     public interface ICustomerService
     {
-
+        void CreateCustomer(Customer customer);
     }
 }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using APIProject.Model.Models;
+using APIProject.ViewModels;
 
 namespace APIProject.Controllers
 {
@@ -20,8 +22,13 @@ namespace APIProject.Controllers
 
         [Route("CreateCustomer")]
         [HttpPost]
-        public IHttpActionResult CreateCustomer()
+        public IHttpActionResult CreateCustomer(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _customerService.CreateCustomer(customer);
             return Ok();
         }
 
