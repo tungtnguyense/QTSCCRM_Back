@@ -6,8 +6,10 @@ using System.Web;
 
 namespace APIProject.ViewModels
 {
-    public class CreateCustomerViewModel
+    public class EditLeadViewModel
     {
+        [Required]
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

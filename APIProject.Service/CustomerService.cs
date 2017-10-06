@@ -9,10 +9,11 @@ using APIProject.Model.Models;
 
 namespace APIProject.Service
 {
-    public class CustomerService: ICustomerService
+    public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IUnitOfWork _unitOfWork;
+
         public CustomerService(ICustomerRepository _customerRepository,
             IUnitOfWork _unitOfWork)
         {
@@ -25,10 +26,29 @@ namespace APIProject.Service
             _customerRepository.Add(customer);
             _unitOfWork.Commit();
         }
+
+        public void EditLead(Customer customer)
+        {
+            Customer foundCustomer =_customerRepository.GetById(customer.Id);
+            foundCustomer.Name = customer.Name;
+            foundCustomer.EstablishedDate = customer.EstablishedDate;
+            foundCustomer.TaxCode = customer.TaxCode;
+            _unitOfWork.Commit();
+        }
+
+        public void EditCustomer(Customer customer)
+        {
+            Customer foundCustomer = _customerRepository.GetById(customer.Id);
+            foundCustomer.CustomerType = customer.CustomerType;
+            _unitOfWork.Commit();
+        }
+        
     }
 
     public interface ICustomerService
     {
         void CreateCustomer(Customer customer);
+        void EditLead(Customer customer);
+        void EditCustomer(Customer customer);
     }
 }

@@ -22,27 +22,52 @@ namespace APIProject.Controllers
 
         [Route("CreateCustomer")]
         [HttpPost]
-        public IHttpActionResult CreateCustomer(Customer customer)
+        public IHttpActionResult CreateCustomer(CreateCustomerViewModel createCustomerViewModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            _customerService.CreateCustomer(customer);
+            _customerService.CreateCustomer(new Customer
+            {
+                Name = createCustomerViewModel.Name,
+                EstablishedDate = createCustomerViewModel.EstablishedDate,
+                TaxCode = createCustomerViewModel.TaxCode
+            });
             return Ok();
         }
 
         [Route("EditLead")]
         [HttpPut]
-        public IHttpActionResult EditLead()
+        public IHttpActionResult EditLead(EditLeadViewModel leadViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _customerService.EditLead(new Customer
+            {
+                Id = leadViewModel.Id,
+                Name = leadViewModel.Name,
+                EstablishedDate = leadViewModel.EstablishedDate,
+                TaxCode = leadViewModel.TaxCode
+            });
             return Ok();
         }
 
         [Route("EditCustomer")]
         [HttpPut]
-        public IHttpActionResult EditCustomer()
+        public IHttpActionResult EditCustomer(EditCustomerViewModel editCustomerViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _customerService.EditCustomer(new Customer
+            {
+                Id = editCustomerViewModel.Id,
+                CustomerType = editCustomerViewModel.CustomerType
+            });
             return Ok();
         }
     }

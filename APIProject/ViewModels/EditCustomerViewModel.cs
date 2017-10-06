@@ -6,13 +6,11 @@ using System.Web;
 
 namespace APIProject.ViewModels
 {
-    public class CreateCustomerViewModel
+    public class EditCustomerViewModel
     {
         [Required]
-        public string Name { get; set; }
+        public int Id { get; set; }
         [Required]
-        public DateTime EstablishedDate { get; set; }
-        [Required]
-        public string TaxCode { get; set; }
+        public string CustomerType { get; set; }
     }
 }
