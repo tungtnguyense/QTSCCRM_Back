@@ -28,6 +28,6 @@ namespace APIProject.Service
     }
     public interface IMarketingStageService
     {
-        void CreateMarketingStages(List<string> stages)
+        void CreateMarketingStages(List<string> stages);
     }
 }
