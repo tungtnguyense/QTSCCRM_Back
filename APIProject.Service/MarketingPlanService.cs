@@ -34,6 +34,30 @@ namespace APIProject.Service
             }
         }
 
+        public void ValidatePlan(MarketingPlan plan)
+        {
+            MarketingPlan _plan = _marketingPlanRepository.GetById(plan.Id);
+
+            //Not found
+            if(_plan == null)
+            {
+                //deal with bad request display code
+            }
+
+            //Found
+            _plan.IsValidated = plan.IsValidated;
+            _plan.ValidatedById = plan.ValidatedById;
+            _plan.ValidateNotes = plan.ValidateNotes;
+
+            //move stage
+            if (_plan.IsValidated)
+            {
+
+            }
+
+            _plan.UpdatedById = plan.ValidatedById;
+        }
+
         private int InsertMarketingPlan(MarketingPlan plan)
         {
             _marketingPlanRepository.Add(plan);
@@ -51,10 +75,12 @@ namespace APIProject.Service
             }
             unitOfWork.Commit();
         }
+
     }
     public interface IMarketingPlanService
     {
         void CreateMarketingPlan(MarketingPlan plan, List<MarketingPlanDate> planDates);
+        void ValidatePlan(MarketingPlan plan);
 
     }
 }

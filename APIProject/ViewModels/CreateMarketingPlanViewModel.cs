@@ -1,6 +1,7 @@
 ﻿using APIProject.Model.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,7 +9,9 @@ namespace APIProject.ViewModels
 {
     public class CreateMarketingPlanViewModel
     {
+        [Required]
         public int StaffID { get; set; }
+        [Required]
         public string Title { get; set; }
         public int Budget { get; set; }
         public string Description { get; set; }

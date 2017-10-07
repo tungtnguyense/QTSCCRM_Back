@@ -43,8 +43,15 @@ namespace APIProject.Controllers
 
         [Route("ValidateMarketingPlan")]
         [HttpPut]
-        public IHttpActionResult ValidateMarketingPlan()
+        public IHttpActionResult ValidateMarketingPlan(ValidateMarketingPlanViewModel request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            MarketingPlan updatedPlan = request.ToMarketingPlanEntity();
+
             return Ok();
         }
 
