@@ -61,6 +61,7 @@
     <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\MarketingPlanDateRepository.cs" />
     <Compile Include="Repositories\MarketingPlanRepository.cs" />
+    <Compile Include="Repositories\MarketingStageRepository.cs" />
     <Compile Include="Repositories\StaffRepository.cs" />
   </ItemGroup>
   <ItemGroup>
