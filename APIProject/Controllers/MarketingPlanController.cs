@@ -14,16 +14,23 @@ namespace APIProject.Controllers
     public class MarketingPlanController : ApiController
     {
         private readonly IMarketingPlanService _marketingPlanService;
+
         public MarketingPlanController(IMarketingPlanService _marketingPlanService)
         {
             this._marketingPlanService = _marketingPlanService;
         }
+
         [Route("CreateMarketingPlan")]
         [HttpPost]
         public IHttpActionResult CreateMarketingPlan(CreateMarketingPlanViewModel viewModel)
         {
-            
-
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            MarketingPlan plan = viewModel.ToMarketingPlanEntity();
+            List<MarketingPlanDate> planDates = viewModel.toMarketingPlanDateEntities();
+            _marketingPlanService.CreateMarketingPlan(plan, planDates);
             return Ok();
         }
 

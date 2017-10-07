@@ -10,6 +10,7 @@ namespace APIProject.Model.Models
     public partial class MarketingPlanDate
     {
         public int Id { get; set; }
+        public DateTime? PlanDate { get; set; }
 
         public int? MarketingPlanId { get; set; }
 

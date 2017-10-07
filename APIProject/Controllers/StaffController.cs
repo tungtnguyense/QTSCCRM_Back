@@ -1,4 +1,5 @@
-﻿using APIProject.Service;
+﻿using APIProject.Model.Models;
+using APIProject.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,23 +20,42 @@ namespace APIProject.Controllers
 
         [Route("CreateStaff")]
         [HttpPost]
-        public IHttpActionResult CreateStaff()
+        public IHttpActionResult CreateStaff(Staff staff)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _staffService.CreateStaff(staff);
             return Ok();
         }
 
         [Route("EditStaff")]
         [HttpPut]
-        public IHttpActionResult EditStaff()
+        public IHttpActionResult EditStaff(Staff staff)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _staffService.EditStaff(staff);
+
             return Ok();
         }
 
-        [Route("EditStaffRole")]
-        [HttpPut]
-        public IHttpActionResult EditStaffRole()
+        [Route("CheckTakenUsername")]
+        [HttpGet]
+        public IHttpActionResult CheckTakenUsername(string username)
         {
-            return Ok();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            if (_staffService.CheckTakenUsername(username))
+            {
+                return Ok("Taken");
+            }
+            return Ok("NotTaken");
         }
 
     }

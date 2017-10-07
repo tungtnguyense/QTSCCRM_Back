@@ -41,22 +41,22 @@ namespace APIProject.Data
 
             modelBuilder.Entity<Staff>()
                 .HasMany(e => e.MarketingPlans)
-                .WithOptional(e => e.Staff)
+                .WithOptional(e => e.CreatedByStaff)
                 .HasForeignKey(e => e.CreatedById);
 
             modelBuilder.Entity<Staff>()
                 .HasMany(e => e.MarketingPlans1)
-                .WithOptional(e => e.Staff1)
+                .WithOptional(e => e.UpdatedByStaff)
                 .HasForeignKey(e => e.UpdatedById);
 
             modelBuilder.Entity<Staff>()
                 .HasMany(e => e.MarketingPlans2)
-                .WithOptional(e => e.Staff2)
+                .WithOptional(e => e.ValidatedByStaff)
                 .HasForeignKey(e => e.ValidatedById);
 
             modelBuilder.Entity<Staff>()
                 .HasMany(e => e.MarketingPlans3)
-                .WithOptional(e => e.Staff3)
+                .WithOptional(e => e.ApprovedByStaff)
                 .HasForeignKey(e => e.ApprovedById);
         }
     }
