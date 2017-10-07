@@ -26,6 +26,10 @@ namespace APIProject.Controllers
             {
                 return BadRequest();
             }
+            if (_staffService.CheckTakenUsername(staff.Username))
+            {
+                return BadRequest("Username taken");
+            }
             _staffService.CreateStaff(staff);
             return Ok();
         }

@@ -13,10 +13,15 @@ namespace APIProject.Data.Repositories
         public MarketingStageRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
+
+        public int GetInitialStageID()
+        {
+            return DbContext.MarketingStages.Where(x => x.IsInitial == true).FirstOrDefault().Id;
+        }
     }
 
     public interface IMarketingStageRepository : IRepository<MarketingStage>
     {
-
+        int GetInitialStageID();
     }
 }

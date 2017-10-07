@@ -13,13 +13,15 @@ namespace APIProject.Service
     {
         private readonly IMarketingPlanRepository _marketingPlanRepository;
         private readonly IMarketingPlanDateRepository _marketingPlanDateRepository;
+        private readonly IMarketingStageRepository _marketingStageRepository;
         private readonly IUnitOfWork unitOfWork;
 
         public MarketingPlanService(IMarketingPlanRepository _marketingPlanRepository, IMarketingPlanDateRepository _marketingPlanDateRepository,
-            IUnitOfWork unitOfWork)
+            IMarketingStageRepository _marketingStageRepository, IUnitOfWork unitOfWork)
         {
             this._marketingPlanDateRepository = _marketingPlanDateRepository;
             this._marketingPlanRepository = _marketingPlanRepository;
+            this._marketingStageRepository = _marketingStageRepository;
             this.unitOfWork = unitOfWork;
         }
 
@@ -35,6 +37,7 @@ namespace APIProject.Service
         private int InsertMarketingPlan(MarketingPlan plan)
         {
             _marketingPlanRepository.Add(plan);
+            plan.StageId = _marketingStageRepository.GetInitialStageID();
             unitOfWork.Commit();
             return plan.Id;
         }

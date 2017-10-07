@@ -21,6 +21,7 @@ namespace APIProject.Controllers
         [HttpPost]
         public IHttpActionResult CreateMarketingStage()
         {
+            _marketingStageService.CreateMarketingStages();
             return Ok();
         }
         

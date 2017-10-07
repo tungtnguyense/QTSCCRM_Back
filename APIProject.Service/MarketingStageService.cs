@@ -21,13 +21,18 @@ namespace APIProject.Service
             this.unitOfWork = unitOfWork;
         }
 
-        public void CreateMarketingStages(List<string> stages)
+        //just for initial mock data
+        public void CreateMarketingStages()
         {
-            
+            marketingStageRepository.Add(new MarketingStage() { Name = "test" });
+            unitOfWork.Commit();
         }
+
+       
     }
     public interface IMarketingStageService
     {
-        void CreateMarketingStages(List<string> stages);
+        void CreateMarketingStages( );
+        
     }
 }

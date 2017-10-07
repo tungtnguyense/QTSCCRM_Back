@@ -20,6 +20,8 @@ namespace APIProject.Model.Models
 
         public string Name { get; set; }
 
+        public bool? IsInitial { get; set; }
+
         public int? NextStageId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
