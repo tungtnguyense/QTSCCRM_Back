@@ -57,7 +57,7 @@ namespace APIProject.Controllers
             {
                 return NotFound();
             }
-            if (_marketingPlanService.CheckPlanStageIsDrafting(viewModel.PlanID))
+            if (!_marketingPlanService.CheckPlanStageIsDrafting(viewModel.PlanID))
             {
                 return BadRequest();
 
@@ -65,6 +65,7 @@ namespace APIProject.Controllers
 
             MarketingPlan editingPlan = viewModel.ToMarketingPlanEntity();
             List<MarketingPlanDate> planDates = viewModel.ToMarketingPlanDateEntities();
+            int editedPlanId = _marketingPlanService.EditMarketingPlan(editingPlan, planDates, viewModel.IsFinished);
 
             return Ok();
         }

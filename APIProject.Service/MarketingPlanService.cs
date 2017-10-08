@@ -156,13 +156,13 @@ namespace APIProject.Service
             _plan.Title = editingPlan.Title;
             _plan.Budget = editingPlan.Budget;
             _plan.Description = editingPlan.Description;
-            if (planDates != null)
-            {
-                AddMarketingPlanDates(_plan.Id, planDates);
-            }
+            
+            // Code here for replacing database dates with inputted dates
+
+
             if (isFinished)
             {
-                editingPlan.StageId = _marketingStageRepository.GetStageByName(ValidatingStageName);
+                _plan.StageId = _marketingStageRepository.GetStageByName(ValidatingStageName);
             }
 
             unitOfWork.Commit();
