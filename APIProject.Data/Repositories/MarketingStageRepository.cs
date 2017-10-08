@@ -18,10 +18,16 @@ namespace APIProject.Data.Repositories
         {
             return DbContext.MarketingStages.Where(x => x.IsInitial == true).FirstOrDefault().Id;
         }
+
+        public int GetStageByName(string stageName)
+        {
+            return DbContext.MarketingStages.Where(x => x.Name.Equals(stageName)).FirstOrDefault().Id;
+        }
     }
 
     public interface IMarketingStageRepository : IRepository<MarketingStage>
     {
         int GetInitialStageID();
+        int GetStageByName(string stageName);
     }
 }

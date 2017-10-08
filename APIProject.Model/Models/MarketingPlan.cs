@@ -29,13 +29,14 @@ namespace APIProject.Model.Models
         public int? StageId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string TotalBudget { get; set; }
         public string EventSheduleFile { get; set; }
         public string TaskAssign { get; set; }
         public int Budget { get; set; }
         public string BudgetFile { get; set; }
         public bool IsValidated { get; set; }
         public string ValidateNotes { get; set; }
+        public bool IsApproved { get; set; }
+        public string ApproveNotes { get; set; }
 
 
         public virtual MarketingStage MarketingStage { get; set; }

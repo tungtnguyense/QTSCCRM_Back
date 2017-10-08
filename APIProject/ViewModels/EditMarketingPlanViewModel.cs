@@ -7,8 +7,10 @@ using System.Web;
 
 namespace APIProject.ViewModels
 {
-    public class CreateMarketingPlanViewModel
+    public class EditMarketingPlanViewModel
     {
+        [Required]
+        public int PlanID { get; set; }
         [Required]
         public int StaffID { get; set; }
         [Required]
@@ -22,7 +24,8 @@ namespace APIProject.ViewModels
         {
             MarketingPlan _plan = new MarketingPlan()
             {
-                CreatedById = this.StaffID,
+                Id = this.PlanID,
+                UpdatedById = this.StaffID,
                 Title = this.Title,
                 Budget = this.Budget,
                 Description = this.Description
@@ -30,19 +33,18 @@ namespace APIProject.ViewModels
             return _plan;
         }
 
-        public List<MarketingPlanDate> toMarketingPlanDateEntities()
+        public List<MarketingPlanDate> ToMarketingPlanDateEntities()
         {
-            if(EventDates == null)
+            if (EventDates == null)
             {
                 return null;
             }
             List<MarketingPlanDate> _collection = new List<MarketingPlanDate>();
-            foreach(DateTime item in EventDates)
+            foreach (DateTime item in EventDates)
             {
                 _collection.Add(new MarketingPlanDate() { PlanDate = item });
             }
             return _collection;
         }
-
     }
 }

@@ -37,6 +37,11 @@ namespace APIProject.Service
             _staffRepository.Update(staff);
             _unitOfWork.Commit();
         }
+
+        public bool CheckStaffExist(int staffId)
+        {
+            return _staffRepository.GetById(staffId) != null;
+        }
     }
 
     public interface IStaffService
@@ -44,5 +49,6 @@ namespace APIProject.Service
         void CreateStaff(Staff staff);
         void EditStaff(Staff staff);
         bool CheckTakenUsername(string username);
+        bool CheckStaffExist(int staffId);
     }
 }

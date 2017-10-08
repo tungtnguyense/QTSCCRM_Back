@@ -270,12 +270,14 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ApproveMarketingPlanViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\EditLeadViewModel.cs" />
     <Compile Include="ViewModels\EditCustomerViewModel.cs" />
     <Compile Include="ViewModels\CreateMarketingPlanViewModel.cs" />
     <Compile Include="ViewModels\CreateCustomerViewModel.cs" />
     <Compile Include="ViewModels\MarketingPlanViewModel.cs" />
+    <Compile Include="ViewModels\ValidateMarketingPlanViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
