@@ -37,7 +37,7 @@ namespace APIProject.Controllers
             MarketingPlan plan = viewModel.ToMarketingPlanEntity();
             List<MarketingPlanDate> planDates = viewModel.toMarketingPlanDateEntities();
             int insertedPlanId = _marketingPlanService.CreateMarketingPlan(plan, planDates, viewModel.IsFinished);
-            
+
             return Ok();
         }
 
@@ -80,12 +80,12 @@ namespace APIProject.Controllers
             {
                 return BadRequest();
             }
-            if(_marketingPlanService.CheckPlanExist(request.PlanId) == false)
+            if (_marketingPlanService.CheckPlanExist(request.PlanId) == false)
             {
                 return NotFound();
             }
-            
-            if(_staffService.CheckStaffExist(request.StaffId) == false)
+
+            if (_staffService.CheckStaffExist(request.StaffId) == false)
             {
                 return NotFound();
             }
@@ -94,7 +94,7 @@ namespace APIProject.Controllers
                 return BadRequest();
             }
             MarketingPlan updatedPlan = request.ToMarketingPlanEntity();
-            _marketingPlanService.ValidatePlan(updatedPlan);
+            _marketingPlanService.ValidatePlan(updatedPlan, request.IsValidated);
             return Ok();
         }
 
@@ -119,7 +119,7 @@ namespace APIProject.Controllers
                 return BadRequest();
             }
             MarketingPlan updatedPlan = request.ToMarketingPlanEntitiy();
-            _marketingPlanService.ApprovePlan(updatedPlan);
+            _marketingPlanService.ApprovePlan(updatedPlan, request.IsApproved);
             return Ok();
         }
 
@@ -130,29 +130,19 @@ namespace APIProject.Controllers
             return Ok();
         }
 
-        //[Route("GetMarketingPlanList")]
-        //[HttpGet]
-        //public IEnumerable<MarketingPlanViewModel> GetMarketingPlanList()
-        //{
-        //    return _marketingPlanService.GetMarketingPlanList().Select(
-        //        c => new MarketingPlanViewModel() {
-        //            Id = c.Id,
-        //            Title = c.Title,
-        //            Description = c.Description,
-        //            TotalBudget = c.TotalBudget,
-        //            EventScheduleFile = c.EventScheduleFile,
-        //            TaskAssignFile = c.TaskAssignFile,
-        //            BudgetFile = c.BudgetFile,
-        //            LicenseFile = c.LicenseFile,
-        //            StageId = c.StageId,
-        //            StageName = c.MarketingStage.Name
-        //            //ValidatedById = c.ValidatedById,
-        //            //ValidatedByName = c.Staff2.LastName + " " + c.Staff2.MiddleName + " " + c.Staff2.FirstName,
-        //            //ValidatedDate = c.ValidatedDate,
-        //            //ValidatedNote = c.ValidatedNote
+        [Route("GetMarketingPlanList")]
+        [HttpGet]
+        public List<MarketingPlanViewModel> GetMarketingPlanList()
+        {
+            List<MarketingPlanViewModel> resultList = new List<MarketingPlanViewModel>();
+            IEnumerable<MarketingPlan> list = _marketingPlanService.GetMarketingPlanList();
+            foreach (MarketingPlan item in list)
+            {
+                resultList.Add(new MarketingPlanViewModel(item));
+            }
 
-        //        });
-        //}
+            return resultList;
+        }
 
     }
 }

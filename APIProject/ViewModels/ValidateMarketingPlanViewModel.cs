@@ -23,7 +23,6 @@ namespace APIProject.ViewModels
             {
                 Id = this.PlanId,
                 ValidatedById = this.StaffId,
-                IsValidated = this.IsValidated,
                 ValidateNotes = this.ValidateNotes
             };
         }

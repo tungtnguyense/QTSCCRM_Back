@@ -33,9 +33,7 @@ namespace APIProject.Model.Models
         public string TaskAssign { get; set; }
         public int Budget { get; set; }
         public string BudgetFile { get; set; }
-        public bool IsValidated { get; set; }
         public string ValidateNotes { get; set; }
-        public bool IsApproved { get; set; }
         public string ApproveNotes { get; set; }
 
 
