@@ -122,12 +122,7 @@ namespace APIProject.Controllers
             return Ok();
         }
 
-        [Route("AcceptMarketingPlan")]
-        [HttpPut]
-        public IHttpActionResult AcceptMarketingPlan()
-        {
-            return Ok();
-        }
+        
 
         [Route("GetMarketingPlanList")]
         [HttpGet]
