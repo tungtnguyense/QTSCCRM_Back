@@ -22,7 +22,8 @@ namespace APIProject.Service
         private readonly string PreparingStageName = "Preparing";
         private readonly string ExecutingStageName = "Executing";
 
-        public MarketingPlanService(IMarketingPlanRepository _marketingPlanRepository, IMarketingPlanDateRepository _marketingPlanDateRepository,
+        public MarketingPlanService(IMarketingPlanRepository _marketingPlanRepository,
+            IMarketingPlanDateRepository _marketingPlanDateRepository,
             IMarketingStageRepository _marketingStageRepository, IUnitOfWork unitOfWork)
         {
             this._marketingPlanDateRepository = _marketingPlanDateRepository;
@@ -52,7 +53,6 @@ namespace APIProject.Service
         public void ValidatePlan(MarketingPlan plan, bool isValidated)
         {
             MarketingPlan _plan = _marketingPlanRepository.GetById(plan.Id);
-
 
 
             //Found
@@ -97,19 +97,20 @@ namespace APIProject.Service
 
         private void BackgroundUpdatePlanStage()
         {
-            IEnumerable<MarketingPlan> _list = _marketingPlanRepository.GetAll().Where(x => x.MarketingStage.Name == PreparingStageName 
-            || x.MarketingStage.Name == ExecutingStageName);
-            foreach(MarketingPlan item in _list)
+            IEnumerable<MarketingPlan> _list = _marketingPlanRepository.GetAll().Where(x =>
+                x.MarketingStage.Name == PreparingStageName
+                || x.MarketingStage.Name == ExecutingStageName);
+            foreach (MarketingPlan item in _list)
             {
-                if(item.MarketingPlanDates.Count != 0)
+                if (item.MarketingPlanDates.Count != 0)
                 {
                     DateTime startDate = item.MarketingPlanDates.First().PlanDate;
-                    if(DateTime.Compare(startDate, DateTime.Today) <=0 )
+                    if (DateTime.Compare(startDate, DateTime.Today) <= 0)
                     {
                         item.StageId = item.MarketingStage.NextStageId;
                     }
                     DateTime endDate = item.MarketingPlanDates.Last().PlanDate;
-                    if(DateTime.Compare(endDate, DateTime.Today )<= 0)
+                    if (DateTime.Compare(endDate, DateTime.Today) <= 0)
                     {
                         item.StageId = item.MarketingStage.NextStageId;
                     }
@@ -124,7 +125,6 @@ namespace APIProject.Service
             MarketingPlan plan = _marketingPlanRepository.GetById(planId);
 
             return plan.MarketingStage.Name.Equals(ValidatingStageName);
-
         }
 
         public bool CheckPlanExist(int planId)
@@ -142,7 +142,6 @@ namespace APIProject.Service
         public void ApprovePlan(MarketingPlan updatedPlan, bool isApproved)
         {
             MarketingPlan _plan = _marketingPlanRepository.GetById(updatedPlan.Id);
-
 
 
             //Found
@@ -182,14 +181,44 @@ namespace APIProject.Service
             _plan.Budget = editingPlan.Budget;
             _plan.Description = editingPlan.Description;
 
-            // Code here for replacing database dates with inputted dates
+            foreach (MarketingPlanDate oldDate in _plan.MarketingPlanDates)
+            {
+                bool isExisted = false;
+                foreach (MarketingPlanDate newDate in planDates)
+                {
+                    if (oldDate.Equals(newDate))
+                    {
+                        isExisted = true;
+                        break;
+                    }
+                }
+                if (!isExisted)
+                {
+                    oldDate.IsDeleted = true;
+                }
+            }
+            foreach (MarketingPlanDate newDate in planDates)
+            {
+                bool isExisted = false;
+                foreach (MarketingPlanDate oldDate in _plan.MarketingPlanDates)
+                {
+                    if (oldDate.Equals(newDate))
+                    {
+                        isExisted = true;
+                        break;
+                    }
+                }
+                if (!isExisted)
+                {
+                    _plan.MarketingPlanDates.Add(newDate);
+                }
+            }
 
             _plan.ValidatedById = null;
             _plan.ApprovedById = null;
             if (isFinished)
             {
                 _plan.StageId = _marketingStageRepository.GetStageByName(ValidatingStageName);
-                
             }
 
             unitOfWork.Commit();
@@ -200,9 +229,16 @@ namespace APIProject.Service
         public IEnumerable<MarketingPlan> GetMarketingPlanList()
         {
             BackgroundUpdatePlanStage();
-            return _marketingPlanRepository.GetAll();
+            List<MarketingPlan> plans = _marketingPlanRepository.GetAll().ToList();
+            foreach (MarketingPlan plan in plans)
+            {
+                plan.MarketingPlanDates = plan.MarketingPlanDates.ToList();
+                (plan.MarketingPlanDates as List<MarketingPlanDate>).RemoveAll(date => date.IsDeleted);
+            }
+            return plans;
         }
     }
+
     public interface IMarketingPlanService
     {
         int CreateMarketingPlan(MarketingPlan plan, List<MarketingPlanDate> planDates, bool isFinished);

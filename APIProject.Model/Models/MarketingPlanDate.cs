@@ -13,6 +13,7 @@ namespace APIProject.Model.Models
         public DateTime PlanDate { get; set; }
 
         public int? MarketingPlanId { get; set; }
+        public bool IsDeleted { get; set; }
 
         public virtual MarketingPlan MarketingPlan { get; set; }
     }
