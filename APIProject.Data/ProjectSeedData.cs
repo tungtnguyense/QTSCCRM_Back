@@ -84,6 +84,30 @@ namespace APIProject.Data
             return _list;
         }
 
+        private List<Customer> MockDataCustomers()
+        {
+            return new List<Customer>()
+            {
+                new Customer()
+                {
+                    Name = "Cong ty A",
+                    EstablishedDate = DateTime.Today.Date,
+                    TaxCode = "111111111111",
+                    IsLead = true,
+                    Address = "ABC Street"
+                },
+                new Customer()
+                {
+                    Name = "Cong ty B",
+                    EstablishedDate = DateTime.Today.Date,
+                    TaxCode = "222222222222",
+                    IsLead = false,
+                    CustomerType = "Inside",
+                    Address = "BCD Street"
+                }
+            };
+        }
+
 
 
 

@@ -33,6 +33,7 @@ namespace APIProject.Service
             foundCustomer.Name = customer.Name;
             foundCustomer.EstablishedDate = customer.EstablishedDate;
             foundCustomer.TaxCode = customer.TaxCode;
+            foundCustomer.Address = customer.Address;
             _unitOfWork.Commit();
         }
 

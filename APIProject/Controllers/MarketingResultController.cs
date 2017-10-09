@@ -1,4 +1,6 @@
-﻿using APIProject.Service;
+﻿using APIProject.Model.Models;
+using APIProject.Service;
+using APIProject.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +22,19 @@ namespace APIProject.Controllers
 
         [Route("CreateMarketingResult")]
         [HttpPost]
-        public IHttpActionResult CreateMarketingResult()
+        public IHttpActionResult CreateMarketingResult(List<CreateMarketingResultViewModel> request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            List<MarketingResult> requestList = new List<MarketingResult>();
+            foreach(CreateMarketingResultViewModel requestItem in request)
+            {
+                requestList.Add(requestItem.ToMarketingResultEntity());
+            }
+
+
             return Ok();
         }
     }

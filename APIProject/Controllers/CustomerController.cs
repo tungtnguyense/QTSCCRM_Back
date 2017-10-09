@@ -32,7 +32,8 @@ namespace APIProject.Controllers
             {
                 Name = createCustomerViewModel.Name,
                 EstablishedDate = createCustomerViewModel.EstablishedDate,
-                TaxCode = createCustomerViewModel.TaxCode
+                TaxCode = createCustomerViewModel.TaxCode,
+                Address = createCustomerViewModel.Address
             });
             return Ok();
         }
@@ -50,7 +51,8 @@ namespace APIProject.Controllers
                 Id = leadViewModel.Id,
                 Name = leadViewModel.Name,
                 EstablishedDate = leadViewModel.EstablishedDate,
-                TaxCode = leadViewModel.TaxCode
+                TaxCode = leadViewModel.TaxCode,
+                Address = leadViewModel.Address
             });
             return Ok();
         }

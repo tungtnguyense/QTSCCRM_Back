@@ -16,5 +16,6 @@ namespace APIProject.ViewModels
         public DateTime EstablishedDate { get; set; }
         [Required]
         public string TaxCode { get; set; }
+        public string Address { get; set; }
     }
 }

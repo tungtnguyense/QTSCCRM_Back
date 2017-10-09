@@ -18,9 +18,7 @@ namespace APIProject.Model.Models
         public int? ContactId { get; set; }
 
         public string CustomerName { get; set; }
-        public string ContactFirstName { get; set; }
-        public string ContactMiddleName { get; set; }
-        public string ContactLastName { get; set; }
+        public string ContactName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
