@@ -16,13 +16,15 @@ namespace APIProject.Controllers
         private readonly IMarketingResultService _marketingResultService;
         private readonly ICustomerService _customerService;
         private readonly IContactService _contactService;
+        private readonly IMarketingPlanService _marketingPlanService;
 
         public MarketingResultController(IMarketingResultService _marketingResultService, ICustomerService _customerService,
-            IContactService _contactService)
+            IContactService _contactService, IMarketingPlanService _marketingPlanService)
         {
             this._marketingResultService = _marketingResultService;
             this._customerService = _customerService;
             this._contactService = _contactService;
+            this._marketingPlanService = _marketingPlanService;
         }
 
         [Route("CreateMarketingResult")]
@@ -51,6 +53,10 @@ namespace APIProject.Controllers
                         return NotFound();
                     }
                 }
+                if (!_marketingPlanService.IsPlanExist(requestItem.PlanID))
+                {
+                    return NotFound();
+                }
                 
                 requestList.Add(requestItem.ToMarketingResultEntity());
             }
@@ -59,6 +65,14 @@ namespace APIProject.Controllers
 
 
             return Ok();
+        }
+
+        [Route("GetMarketingResultList")]
+        [HttpGet]
+        public IHttpActionResult GetMarketingResultList(string planId, string actId)
+        {
+            //TO-Do
+            return Ok(planId + " " + actId);
         }
     }
 }

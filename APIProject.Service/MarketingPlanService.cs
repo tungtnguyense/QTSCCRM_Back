@@ -237,6 +237,11 @@ namespace APIProject.Service
             }
             return plans;
         }
+
+        public bool IsPlanExist(int planID)
+        {
+            return _marketingPlanRepository.GetById(planID) != null;
+        }
     }
 
     public interface IMarketingPlanService
@@ -250,5 +255,6 @@ namespace APIProject.Service
         bool CheckPlanStageIsDrafting(int planID);
         int EditMarketingPlan(MarketingPlan editingPlan, List<MarketingPlanDate> planDates, bool isFinished);
         IEnumerable<MarketingPlan> GetMarketingPlanList();
+        bool IsPlanExist(int planID);
     }
 }
