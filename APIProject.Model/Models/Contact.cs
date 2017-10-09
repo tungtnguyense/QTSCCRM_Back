@@ -20,6 +20,7 @@ namespace APIProject.Model.Models
         public int? CustomerId { get; set; }
         public string AvatarImg { get; set; }
         public string Name { get; set; }
+        public bool IsMain { get; set; }
         public string Position { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }

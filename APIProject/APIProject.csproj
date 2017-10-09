@@ -271,6 +271,8 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ApproveMarketingPlanViewModel.cs" />
+    <Compile Include="ViewModels\CreateContactViewModel.cs" />
+    <Compile Include="ViewModels\CreateMarketingResultViewModel.cs" />
     <Compile Include="ViewModels\EditLeadViewModel.cs" />
     <Compile Include="ViewModels\EditCustomerViewModel.cs" />
     <Compile Include="ViewModels\CreateMarketingPlanViewModel.cs" />

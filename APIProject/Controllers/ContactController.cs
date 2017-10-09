@@ -1,4 +1,5 @@
 ﻿using APIProject.Service;
+using APIProject.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,14 @@ namespace APIProject.Controllers
 
         [Route("CreateContact")]
         [HttpPost]
-        public IHttpActionResult CreateContact()
+        public IHttpActionResult CreateContact(CreateContactViewModel request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _contactService.CreateContact(request.ToContactEntity());
+
             return Ok();
         }
 

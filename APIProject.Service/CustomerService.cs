@@ -43,7 +43,11 @@ namespace APIProject.Service
             foundCustomer.CustomerType = customer.CustomerType;
             _unitOfWork.Commit();
         }
-        
+
+        public bool IsCustomerExist(int customerId)
+        {
+            return _customerRepository.GetById(customerId) != null;
+        }
     }
 
     public interface ICustomerService
@@ -51,5 +55,6 @@ namespace APIProject.Service
         void CreateCustomer(Customer customer);
         void EditLead(Customer customer);
         void EditCustomer(Customer customer);
+        bool IsCustomerExist(int customerId);
     }
 }

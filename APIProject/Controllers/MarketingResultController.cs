@@ -14,10 +14,15 @@ namespace APIProject.Controllers
     public class MarketingResultController : ApiController
     {
         private readonly IMarketingResultService _marketingResultService;
+        private readonly ICustomerService _customerService;
+        private readonly IContactService _contactService;
 
-        public MarketingResultController(IMarketingResultService _marketingResultService)
+        public MarketingResultController(IMarketingResultService _marketingResultService, ICustomerService _customerService,
+            IContactService _contactService)
         {
             this._marketingResultService = _marketingResultService;
+            this._customerService = _customerService;
+            this._contactService = _contactService;
         }
 
         [Route("CreateMarketingResult")]
@@ -31,8 +36,26 @@ namespace APIProject.Controllers
             List<MarketingResult> requestList = new List<MarketingResult>();
             foreach(CreateMarketingResultViewModel requestItem in request)
             {
+                //Check Exist
+                if(requestItem.CustomerID.HasValue)
+                {
+                    if (!_customerService.IsCustomerExist(requestItem.CustomerID.Value))
+                    {
+                        return NotFound();
+                    }
+                }
+                if(requestItem.ContactID.HasValue)
+                {
+                    if (!_contactService.IsContactExist(requestItem.ContactID.Value))
+                    {
+                        return NotFound();
+                    }
+                }
+                
                 requestList.Add(requestItem.ToMarketingResultEntity());
             }
+
+            _marketingResultService.CreateMarketingResults(requestList);
 
 
             return Ok();

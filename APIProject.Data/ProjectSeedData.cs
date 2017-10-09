@@ -23,6 +23,8 @@ namespace APIProject.Data
             InsertStage(context, stackList, null);
             IEnumerable<Staff> staffList = MockDataStaffs();
             context.Staffs.AddRange(staffList);
+            IEnumerable<Customer> customerList = MockDataCustomers();
+            context.Customers.AddRange(customerList);
 
             context.Commit();
         }

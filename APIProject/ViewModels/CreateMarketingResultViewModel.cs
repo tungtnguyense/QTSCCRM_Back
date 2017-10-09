@@ -10,9 +10,10 @@ namespace APIProject.ViewModels
     public class CreateMarketingResultViewModel
     {
 
-        public int CustomerID { get; set; }
+        public int? CustomerID { get; set; }
+        [Required]
         public string CustomerName { get; set; }
-        public int ContactID { get; set; }
+        public int? ContactID { get; set; }
         [Required]
         public string ContactName { get; set; }
         public string Email { get; set; }
@@ -35,6 +36,8 @@ namespace APIProject.ViewModels
         {
             return new MarketingResult()
             {
+                CustomerId = this.CustomerID,
+                CustomerName = this.CustomerName,
                 ContactId = this.ContactID,
                 ContactName = this.ContactName,
                 Email = this.Email,
