@@ -83,11 +83,24 @@ namespace APIProject.Service
         {
             //TODO
         }
+
+        public IEnumerable<MarketingResult> GetResultList(int planId)
+        {
+            IEnumerable<MarketingResult> _list;
+            _list = _marketingResultRepository.GetAll();
+            if (planId != 0)
+            {
+                return _list.Where(x => x.MarketingPlanId == planId);
+            }
+
+            return _list;
+        }
     }
 }
 
 public interface IMarketingResultService
 {
     void CreateMarketingResults(List<MarketingResult> requestList);
+    IEnumerable<MarketingResult> GetResultList(int planId);
 }
 

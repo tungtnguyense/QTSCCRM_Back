@@ -69,10 +69,40 @@ namespace APIProject.Controllers
 
         [Route("GetMarketingResultList")]
         [HttpGet]
-        public IHttpActionResult GetMarketingResultList(string planId, string actId)
+        public IHttpActionResult GetMarketingResultList(string planId = null)
         {
-            //TO-Do
-            return Ok(planId + " " + actId);
+            int _planId = 0;
+            if (planId != null)
+            {
+                if (!Int32.TryParse(planId, out _planId))
+                {
+                    return BadRequest();
+                }
+            }
+            return Ok(_marketingResultService.GetResultList(_planId).Select(x => new MarketingResultViewModel()
+            {
+                Id = x.Id,
+                PlanId = x.MarketingPlanId,
+                CustomerId = x.CustomerId,
+                ContactId = x.ContactId,
+                CustomerName = x.CustomerName,
+                ContactName = x.ContactName,
+                Email = x.Email,
+                Phone = x.Phone,
+                Address = x.Address,
+                Notes = x.Notes,
+                FacilityRate = x.FacilityRate,
+                ArrangingRate = x.ArrangingRate,
+                ServicingRate = x.ServicingRate,
+                IndicatorRate = x.IndicatorRate,
+                OthersRate = x.OthersRate,
+                Media = x.Media,
+                InvitationLetter = x.InvitationLetter,
+                QTSCWebsite = x.QTSCWebsite,
+                Friend = x.Friend,
+                FromOthers = x.FromOthers,
+                WantAnother = x.WantAnother
+            }));
         }
     }
 }
