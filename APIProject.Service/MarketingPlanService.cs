@@ -181,11 +181,9 @@ namespace APIProject.Service
             _plan.Budget = editingPlan.Budget;
             _plan.Description = editingPlan.Description;
 
-            // Code here for replacing database dates with inputted dates
             foreach (MarketingPlanDate oldDate in _plan.MarketingPlanDates)
             {
                 bool isExisted = false;
-                //TODO: try contain
                 foreach (MarketingPlanDate newDate in planDates)
                 {
                     if (oldDate.Equals(newDate))
@@ -231,7 +229,13 @@ namespace APIProject.Service
         public IEnumerable<MarketingPlan> GetMarketingPlanList()
         {
             BackgroundUpdatePlanStage();
-            return _marketingPlanRepository.GetAll();
+            List<MarketingPlan> plans = _marketingPlanRepository.GetAll().ToList();
+            foreach (MarketingPlan plan in plans)
+            {
+                plan.MarketingPlanDates = plan.MarketingPlanDates.ToList();
+                (plan.MarketingPlanDates as List<MarketingPlanDate>).RemoveAll(date => date.IsDeleted);
+            }
+            return plans;
         }
     }
 
