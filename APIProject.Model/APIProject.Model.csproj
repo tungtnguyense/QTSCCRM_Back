@@ -53,10 +53,13 @@
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Issue.cs" />
     <Compile Include="Models\MarketingPlan.cs" />
     <Compile Include="Models\MarketingPlanDate.cs" />
     <Compile Include="Models\MarketingResult.cs" />
     <Compile Include="Models\MarketingStage.cs" />
+    <Compile Include="Models\SalesCategory.cs" />
+    <Compile Include="Models\SalesItem.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

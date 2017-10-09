@@ -14,20 +14,30 @@ namespace APIProject.Model.Models
         {
             Contacts = new HashSet<Contact>();
             MarketingResults = new HashSet<MarketingResult>();
+            Issues = new HashSet<Issue>();
         }
 
         public int Id { get; set; }
+
         public string Name { get; set; }
+
         public DateTime? EstablishedDate { get; set; }
+
         public string TaxCode { get; set; }
+
         public string Address { get; set; }
+
         public bool IsLead { get; set; }
+
         public string CustomerType { get; set; }
-            
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contact> Contacts { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MarketingResult> MarketingResults { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Issue> Issues { get; set; }
     }
 }

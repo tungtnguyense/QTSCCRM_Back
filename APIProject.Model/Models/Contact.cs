@@ -13,21 +13,31 @@ namespace APIProject.Model.Models
         public Contact()
         {
             MarketingResults = new HashSet<MarketingResult>();
+            Issues = new HashSet<Issue>();
         }
 
         public int Id { get; set; }
 
         public int? CustomerId { get; set; }
+
         public string AvatarImg { get; set; }
+
         public string Name { get; set; }
+
         public bool IsMain { get; set; }
+
         public string Position { get; set; }
+
         public string Phone { get; set; }
+
         public string Email { get; set; }
 
         public virtual Customer Customer { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MarketingResult> MarketingResults { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Issue> Issues { get; set; }
     }
 }

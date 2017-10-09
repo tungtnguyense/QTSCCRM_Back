@@ -15,10 +15,13 @@ namespace APIProject.Data
 
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Issue> Issues { get; set; }
         public virtual DbSet<MarketingPlan> MarketingPlans { get; set; }
         public virtual DbSet<MarketingPlanDate> MarketingPlanDates { get; set; }
         public virtual DbSet<MarketingResult> MarketingResults { get; set; }
         public virtual DbSet<MarketingStage> MarketingStages { get; set; }
+        public virtual DbSet<SalesCategory> SalesCategories { get; set; }
+        public virtual DbSet<SalesItem> SalesItems { get; set; }
         public virtual DbSet<Staff> Staffs { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
 
@@ -38,6 +41,31 @@ namespace APIProject.Data
                 .HasMany(e => e.MarketingStage1)
                 .WithOptional(e => e.MarketingStage2)
                 .HasForeignKey(e => e.NextStageId);
+
+            modelBuilder.Entity<SalesCategory>()
+                .HasMany(e => e.SalesCategory1)
+                .WithOptional(e => e.SalesCategory2)
+                .HasForeignKey(e => e.SubOfId);
+
+            modelBuilder.Entity<Staff>()
+                .HasMany(e => e.Issues)
+                .WithOptional(e => e.Staff)
+                .HasForeignKey(e => e.AcceptedById);
+
+            modelBuilder.Entity<Staff>()
+                .HasMany(e => e.Issues1)
+                .WithOptional(e => e.Staff1)
+                .HasForeignKey(e => e.CreatedById);
+
+            modelBuilder.Entity<Staff>()
+                .HasMany(e => e.Issues2)
+                .WithOptional(e => e.Staff2)
+                .HasForeignKey(e => e.OpenById);
+
+            modelBuilder.Entity<Staff>()
+                .HasMany(e => e.Issues3)
+                .WithOptional(e => e.Staff3)
+                .HasForeignKey(e => e.SolveById);
 
             modelBuilder.Entity<Staff>()
                 .HasMany(e => e.MarketingPlans)
