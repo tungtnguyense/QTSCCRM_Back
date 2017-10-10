@@ -26,6 +26,20 @@ namespace APIProject.Model.Models
 
         public int? ContactId { get; set; }
 
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? OpenDate { get; set; }
+        public DateTime? SolveDate { get; set; }
+        public DateTime? ApproveDate { get; set; }
+        public DateTime? AcceptedDate { get; set; }
+        public string OpenNotes { get; set; }
+        public string SolutionNotes { get; set; }
+        public string AcceptNotes { get; set; }
+        public string Stage { get; set; }
+        public int ReOpenCount { get; set; }
+
+
         public virtual Contact Contact { get; set; }
 
         public virtual Customer Customer { get; set; }

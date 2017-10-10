@@ -48,6 +48,16 @@ namespace APIProject.Service
         {
             return _customerRepository.GetById(customerId) != null;
         }
+
+        public bool IsCustomerLead(int customerId)
+        {
+            return _customerRepository.GetById(customerId).IsLead;
+        }
+
+        public bool CustomerHasContact(int customerId, int contactId)
+        {
+            return _customerRepository.GetById(customerId).Contacts.Where(x => x.Id == contactId).FirstOrDefault() != null;
+        }
     }
 
     public interface ICustomerService
@@ -56,5 +66,7 @@ namespace APIProject.Service
         void EditLead(Customer customer);
         void EditCustomer(Customer customer);
         bool IsCustomerExist(int customerId);
+        bool IsCustomerLead(int customerId);
+        bool CustomerHasContact(int customerId, int contactId);
     }
 }
