@@ -49,22 +49,22 @@ namespace APIProject.Data
 
             modelBuilder.Entity<Staff>()
                 .HasMany(e => e.Issues)
-                .WithOptional(e => e.Staff)
+                .WithOptional(e => e.AcceptedByStaff)
                 .HasForeignKey(e => e.AcceptedById);
 
             modelBuilder.Entity<Staff>()
                 .HasMany(e => e.Issues1)
-                .WithOptional(e => e.Staff1)
+                .WithOptional(e => e.CreatedByStaff)
                 .HasForeignKey(e => e.CreatedById);
 
             modelBuilder.Entity<Staff>()
                 .HasMany(e => e.Issues2)
-                .WithOptional(e => e.Staff2)
+                .WithOptional(e => e.OpenByStaff)
                 .HasForeignKey(e => e.OpenById);
 
             modelBuilder.Entity<Staff>()
                 .HasMany(e => e.Issues3)
-                .WithOptional(e => e.Staff3)
+                .WithOptional(e => e.SolveByStaff)
                 .HasForeignKey(e => e.SolveById);
 
             modelBuilder.Entity<Staff>()
