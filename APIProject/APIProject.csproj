@@ -255,6 +255,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\IssueController.cs" />
     <Compile Include="Controllers\MarketingPlanController.cs" />
     <Compile Include="Controllers\MarketingPlanDateController.cs" />
     <Compile Include="Controllers\MarketingResultController.cs" />

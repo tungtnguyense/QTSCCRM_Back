@@ -43,8 +43,8 @@ namespace APIProject.Data
                 .HasForeignKey(e => e.NextStageId);
 
             modelBuilder.Entity<SalesCategory>()
-                .HasMany(e => e.SalesCategory1)
-                .WithOptional(e => e.SalesCategory2)
+                .HasMany(e => e.SubCategories)
+                .WithOptional(e => e.SubOfCategory)
                 .HasForeignKey(e => e.SubOfId);
 
             modelBuilder.Entity<Staff>()

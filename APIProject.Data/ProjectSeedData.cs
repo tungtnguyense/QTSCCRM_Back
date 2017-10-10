@@ -26,6 +26,51 @@ namespace APIProject.Data
             IEnumerable<Customer> customerList = MockDataCustomers();
             context.Customers.AddRange(customerList);
 
+
+            context.Commit();
+
+            InsertCategories(context);
+        }
+
+        private void InsertCategories(APIProjectEntities context)
+        {
+            SalesCategory category1 = new SalesCategory()
+            {
+                Name = "Utility services"
+            };
+            context.SalesCategories.Add(category1);
+            context.Commit();
+            context.SalesCategories.Add(new SalesCategory()
+            {
+                Name = "Hall, classroom",
+                SubOfId = category1.Id
+            });
+            context.SalesCategories.Add(new SalesCategory()
+            {
+                Name = "ATM",
+                SubOfId = category1.Id
+            });
+            context.SalesCategories.Add(new SalesCategory()
+            {
+                Name = "Parking lot",
+                SubOfId = category1.Id
+            });
+            context.SalesCategories.Add(new SalesCategory()
+            {
+                Name = "Domitory",
+                SubOfId = category1.Id
+            });
+            context.SalesCategories.Add(new SalesCategory()
+            {
+                Name = "Advertising pano",
+                SubOfId = category1.Id
+            });
+            context.SalesCategories.Add(new SalesCategory()
+            {
+                Name = "Filming, advertising",
+                SubOfId = category1.Id
+            });
+
             context.Commit();
         }
 

@@ -14,7 +14,7 @@ namespace APIProject.Model.Models
         public SalesCategory()
         {
             Issues = new HashSet<Issue>();
-            SalesCategory1 = new HashSet<SalesCategory>();
+            SubCategories = new HashSet<SalesCategory>();
             SalesItems = new HashSet<SalesItem>();
         }
 
@@ -22,13 +22,15 @@ namespace APIProject.Model.Models
 
         public int? SubOfId { get; set; }
 
+        public string Name { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Issue> Issues { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SalesCategory> SalesCategory1 { get; set; }
+        public virtual ICollection<SalesCategory> SubCategories { get; set; }
 
-        public virtual SalesCategory SalesCategory2 { get; set; }
+        public virtual SalesCategory SubOfCategory { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesItem> SalesItems { get; set; }
