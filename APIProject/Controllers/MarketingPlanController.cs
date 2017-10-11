@@ -41,6 +41,8 @@ namespace APIProject.Controllers
             List<MarketingPlanDate> planDates = viewModel.toMarketingPlanDateEntities();
             int insertedPlanId = _marketingPlanService.CreateMarketingPlan(plan, planDates, viewModel.IsFinished);
 
+            File.WriteAllBytes($@"D:/{viewModel.BudgetFileName}",Convert.FromBase64String(viewModel.BudgetFileContent));
+
             return Ok();
         }
 

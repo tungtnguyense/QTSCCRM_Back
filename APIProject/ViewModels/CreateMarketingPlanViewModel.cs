@@ -17,8 +17,8 @@ namespace APIProject.ViewModels
         public string Description { get; set; }
         public ICollection<DateTime> EventDates { get; set; }
         public bool IsFinished { get; set; }
-        public HttpPostedFile BudgetFile { get; set; }
-
+        public string BudgetFileName { get; set; }
+        public string BudgetFileContent { get; set; }
         public MarketingPlan ToMarketingPlanEntity()
         {
             MarketingPlan _plan = new MarketingPlan()

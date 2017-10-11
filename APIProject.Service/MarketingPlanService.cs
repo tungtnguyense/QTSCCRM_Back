@@ -35,10 +35,10 @@ namespace APIProject.Service
         public int CreateMarketingPlan(MarketingPlan plan, List<MarketingPlanDate> planDates, bool isFinished)
         {
             int insertMarketingPlanID = InsertMarketingPlan(plan);
-            planDates.Sort((x, y) => DateTime.Compare(x.PlanDate, y.PlanDate));
             if (planDates != null)
             {
                 AddMarketingPlanDates(insertMarketingPlanID, planDates);
+                planDates.Sort((x, y) => DateTime.Compare(x.PlanDate, y.PlanDate));
             }
             if (isFinished)
             {
