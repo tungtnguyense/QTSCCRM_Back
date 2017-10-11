@@ -78,7 +78,6 @@ namespace APIProject.Controllers
         [HttpPut]
         public IHttpActionResult ValidateMarketingPlan(ValidateMarketingPlanViewModel request)
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest();

@@ -279,6 +279,7 @@
     <Compile Include="ViewModels\CreateCustomerViewModel.cs" />
     <Compile Include="ViewModels\EditMarketingPlanViewModel.cs" />
     <Compile Include="ViewModels\MarketingPlanViewModel.cs" />
+    <Compile Include="ViewModels\MarketingResultViewModel.cs" />
     <Compile Include="ViewModels\ValidateMarketingPlanViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

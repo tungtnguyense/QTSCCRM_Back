@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using APIProject.Model.Models;
 using APIProject.Data.Infrastructure;
 using APIProject.Data.Repositories;
+using System.Net.Mail;
+using System.Net;
 
 namespace APIProject.Service
 {
@@ -26,12 +28,12 @@ namespace APIProject.Service
         }
         public void CreateMarketingResults(List<MarketingResult> requestList)
         {
-            foreach(MarketingResult item in requestList)
+            foreach (MarketingResult item in requestList)
             {
                 _marketingResultRepository.Add(item);
-                if(item.CustomerId != null)
+                if (item.CustomerId.HasValue)
                 {
-                    if(item.ContactId != null)
+                    if (item.ContactId.HasValue)
                     {
                         Contact _contact = _contactRepository.GetAll().Where(x => x.Id == item.ContactId).First();
                         _contact.Name = item.ContactName;
@@ -52,7 +54,7 @@ namespace APIProject.Service
                 }
                 else
                 {
-                    if(item.ContactId.HasValue)
+                    if (!item.ContactId.HasValue)
                     {
                         Customer _insertedCustomer = new Customer()
                         {
@@ -69,15 +71,36 @@ namespace APIProject.Service
                             Phone = item.Phone,
                             Email = item.Email
                         };
+                        _contactRepository.Add(_insertedContact);
                     }
                 }
                 _unitOfWork.Commit();
             }
+            BackgroundSendThankyouMessage(requestList);
+        }
+
+        private void BackgroundSendThankyouMessage(List<MarketingResult> resultList)
+        {
+            //TODO
+        }
+
+        public IEnumerable<MarketingResult> GetResultList(int planId)
+        {
+            IEnumerable<MarketingResult> _list;
+            _list = _marketingResultRepository.GetAll();
+            if (planId != 0)
+            {
+                return _list.Where(x => x.MarketingPlanId == planId);
+            }
+
+            return _list;
         }
     }
-
-    public interface IMarketingResultService
-    {
-        void CreateMarketingResults(List<MarketingResult> requestList);
-    }
 }
+
+public interface IMarketingResultService
+{
+    void CreateMarketingResults(List<MarketingResult> requestList);
+    IEnumerable<MarketingResult> GetResultList(int planId);
+}
+
