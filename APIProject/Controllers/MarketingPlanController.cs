@@ -3,9 +3,11 @@ using APIProject.Service;
 using APIProject.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace APIProject.Controllers
@@ -34,6 +36,7 @@ namespace APIProject.Controllers
             {
                 return NotFound();
             }
+            
             MarketingPlan plan = viewModel.ToMarketingPlanEntity();
             List<MarketingPlanDate> planDates = viewModel.toMarketingPlanDateEntities();
             int insertedPlanId = _marketingPlanService.CreateMarketingPlan(plan, planDates, viewModel.IsFinished);
@@ -132,7 +135,7 @@ namespace APIProject.Controllers
 
         [Route("GetMarketingPlanList")]
         [HttpGet]
-        public List<MarketingPlanViewModel> GetMarketingPlanList()
+        public List<MarketingPlanViewModel> GetMarketingPlanList(int? pageNumber = null, int? pageSize = null)
         {
             List<MarketingPlanViewModel> resultList = new List<MarketingPlanViewModel>();
             IEnumerable<MarketingPlan> list = _marketingPlanService.GetMarketingPlanList();
@@ -140,7 +143,10 @@ namespace APIProject.Controllers
             {
                 resultList.Add(new MarketingPlanViewModel(item));
             }
-
+            if (pageNumber.HasValue && pageSize.HasValue)
+            {
+                return resultList.GetRange(pageNumber.Value,pageSize.Value);
+            }
             return resultList;
         }
 

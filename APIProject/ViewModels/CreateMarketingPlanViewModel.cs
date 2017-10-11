@@ -17,6 +17,7 @@ namespace APIProject.ViewModels
         public string Description { get; set; }
         public ICollection<DateTime> EventDates { get; set; }
         public bool IsFinished { get; set; }
+        public HttpPostedFile BudgetFile { get; set; }
 
         public MarketingPlan ToMarketingPlanEntity()
         {
